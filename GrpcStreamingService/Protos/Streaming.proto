@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcStreamingService";
+
+service Streaming {
+  rpc UnaryCall (UnaryRequest) returns (UnaryResponse);
+  rpc ServerStreamingCall (StreamingRequest) returns (stream StreamingResponse);
+  rpc ClientStreamingCall (stream StreamingRequest) returns (StreamingResponse);
+  rpc BidirectionalStreamingCall (stream StreamingRequest) returns (stream StreamingResponse);
+}
+
+message UnaryRequest {
+  string UserId = 1;
+}
+
+message UnaryResponse {
+  string Name = 1;
+  int32 Age = 2;
+  string Email = 3;
+}
+
+message StreamingRequest {
+  string UserId = 1;
+  string Message = 2;
+  string Activity = 3;
+  string ChatMessage = 4;
+  string Timestamp = 5;
+}
+
+message StreamingResponse {
+  string Message = 1;
+  string ChatMessage = 2;
+  string Summary = 3;
+  string Timestamp = 4;
+}
